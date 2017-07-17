@@ -8,7 +8,7 @@ terraform {
 # IBM Cloud Provider
 ##############################################################################
 # See the README for details on ways to supply these values
-provider "ibmcloud" {
+provider "ibm" {
   bluemix_api_key = "${var.bxapikey}"
   softlayer_username = "${var.slusername}"
   softlayer_api_key = "${var.slapikey}"
@@ -17,7 +17,7 @@ provider "ibmcloud" {
 ##############################################################################
 # IBM SSH Key: For connecting to VMs
 ##############################################################################
-resource "ibmcloud_infra_ssh_key" "ssh_key" {
+resource "ibm_compute_ssh_key" "ssh_key" {
   label = "${var.key_label}"
   notes = "${var.key_note}"
   # Public key, so this is completely safe
