@@ -53,5 +53,5 @@ variable key_note {
 # Outputs
 ##############################################################################
 output "ssh_key_id" {
-  value = "${ibmcloud_infra_ssh_key.ssh_key.id}"
+  value = "${ibm_compute_ssh_key.ssh_key.id}"
 }
