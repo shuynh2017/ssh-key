@@ -1,14 +1,14 @@
 # Terraform Bluemix SSH Key
-A Terraform configuration for creating an [IBM Cloud SSH Key](https://ibm-bluemix.github.io/tf-ibm-docs//r/infra_ssh_key.html) (`ibmcloud_infra_ssh_key`). This will create a SSH key in the specified IBM cloud account. This is not a module, it is a terraform configuration that should be cloned or forked to be used.
+A Terraform configuration for creating an [IBM Cloud SSH Key](https://ibm-bluemix.github.io/tf-ibm-docs/v0.4.0/r/compute_ssh_key.html) (`ibm_compute_ssh_key`). This will create a SSH key in the specified IBM cloud account. This is not a module, it is a terraform configuration that should be cloned or forked to be used.
 
-**This configuration template is written for IBM Cloud Provider version `tf-v0.9.3-ibm-provider-v0.2.1`**
+**This configuration template is written for IBM Cloud Provider version `v0.4.0`**
 
 # Usage with IBM Cloud Schematics
 
 Follow the instructions on the [Getting Started with IBM Cloud Schematics](https://console.ng.bluemix.net/docs/services/schematics/index.html#gettingstarted) documentation page.
 
 # Usage with Terraform Binary on your local workstation
-You will need to [setup up IBM Cloud provider credentials](#setting-up-provider-credentials) on your local machine. Then you will need the [Terraform binary](https://www.terraform.io/intro/getting-started/install.html) and the [IBM Cloud Provider Plugin](https://github.com/IBM-Bluemix/terraform/releases). Then follow the instructions at [https://ibm-bluemix.github.io/tf-ibm-docs#developing-locally](https://ibm-bluemix.github.io/tf-ibm-docs/tf-v0.9.3-ibm-provider-v0.2.1/#developing-locally).
+You will need to [setup up IBM Cloud provider credentials](#setting-up-provider-credentials) on your local machine. Then you will need the [Terraform binary](https://www.terraform.io/intro/getting-started/install.html) and the [IBM Cloud Provider Plugin](https://github.com/IBM-Bluemix/terraform/releases). Then follow the instructions at [https://ibm-bluemix.github.io/tf-ibm-docs/v0.4.0/#developing-locally](https://ibm-bluemix.github.io/tf-ibm-docs/v0.4.0/#developing-locally).
 
 To run this project locally execute the following steps:
 
@@ -77,9 +77,6 @@ On OS X this is achieved by entering the following into your terminal, replacing
 - `export TF_VAR_slapikey=<value>`
 
 However this is only temporary to your current terminal session, to make this permanent add these export statements to your `~/.profile`, `~/.bashrc`, `~/.bash_profile` or preferred terminal configuration file. If you go this route without running `export ...` in your command prompt, you'll need to source your terminal configuration file from the command prompt like so: `source ~/.bashrc` (or your preferred config file).
-
-# Authors
-[Chris Kelner](http://github.com/ckelner)
 
 # License
 MIT; see [LICENSE](LICENSE) for details.
