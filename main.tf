@@ -94,13 +94,13 @@ variable compute_cores {
   description = "Number of cores for each compute host"
 }
 
-#variable compute_prefix {
-#  description = "Prefix for compute host which will be appended with number of compute, e.g., compute0, compute1 "
-#}
+variable compute_prefix {
+  description = "Prefix for compute host which will be appended with number of compute, e.g., compute0, compute1 "
+}
 
-#variable post_install_script_uri {
-#  description = "e.g., https://ip/SpectrumSymphony.sh, https://ip/SpectrumConductor.sh"
-#}
+variable post_install_script_uri {
+  description = "e.g., https://ip/SpectrumSymphony.sh, https://ip/SpectrumConductor.sh"
+}
 
 
 ##############################################################################
