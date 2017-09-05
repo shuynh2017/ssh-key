@@ -51,7 +51,7 @@ resource "ibm_compute_vm_instance" "computes" {
 #  count 	    = "${var.num_compute}"
   user_metadata     = "{\"masterIP\":${ibm_compute_vm_instance.my_server_1.ipv4_address}}"
   post_install_script_uri = "${var.post_install_script_uri}"
-#}
+}
 
 ##############################################################################
 # Variables
