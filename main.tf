@@ -24,6 +24,18 @@ resource "ibm_compute_ssh_key" "ssh_key" {
   public_key = "${var.public_key}"
 }
 
+# Create a virtual server with the SSH key.
+resource "ibm_compute_vm_instance" "my_server_2" {
+  hostname          = "shuynh1.example.com"
+  domain            = "example.com"
+  ssh_keys          = [123456, "${ibm_compute_ssh_key.ssh_key.id}"]
+  os_reference_code = "CENTOS_6_64"
+  datacenter        = "tor01"
+  network_speed     = 10
+  cores             = 1
+  memory            = 1024
+}
+
 ##############################################################################
 # Variables
 ##############################################################################
