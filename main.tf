@@ -26,29 +26,31 @@ resource "ibm_compute_ssh_key" "ssh_key" {
 
 
 # Create a virtual server with the SSH key.
-resource "ibm_compute_vm_instance" "my_server_1" {
-  hostname          = "shuynh${count.index}"
+resource "ibm_compute_vm_instance" "master" {
+  hostname          = "${var.mastser_hostname}"
   domain            = "example.com"
   #ssh_keys          = [123456, "${ibm_compute_ssh_key.keyLabel1.id}"]
+  datacenter        = "${var.datacenter}"
   os_reference_code = "CENTOS_6_64"
-  datacenter        = "tor01"
   network_speed     = 10
-  cores             = 1
+  cores             = ${var.master_cores}
   memory            = 1024
-  count = 2
+  post_install_script_uri = "${var.post_install_script_uri}"
 }
 
 # Create a virtual server with the SSH key.
-#resource "ibm_compute_vm_instance" "my_server_2" {
-#  hostname          = "shuynh2"
-#  domain            = "example.com"
-#  #ssh_keys          = [123456, "${ibm_compute_ssh_key.keyLabel1.id}"]
-#  os_reference_code = "CENTOS_6_64"
-#  datacenter        = "tor01"
-#  network_speed     = 10
-#  cores             = 1
-#  memory            = 1024
-#  user_metadata     = "{\"masterIP\":${ibm_compute_vm_instance.my_server_1.ipv4_address}}"
+resource "ibm_compute_vm_instance" "computes" {
+  hostname          = "${var.compute_prefix}${count.index}"
+  domain            = "example.com"
+  #ssh_keys          = [123456, "${ibm_compute_ssh_key.keyLabel1.id}"]
+  datacenter        = "${var.datacenter}"
+  os_reference_code = "CENTOS_6_64"
+  network_speed     = 10
+  cores             = ${var.compute_cores}
+  memory            = 1024
+  count 	    = ${var.num_compute}
+  user_metadata     = "{\"masterIP\":${ibm_compute_vm_instance.my_server_1.ipv4_address}}"
+  post_install_script_uri = "${var.post_install_script_uri}"
 #}
 
 ##############################################################################
@@ -75,6 +77,31 @@ variable key_label {
 variable key_note {
   description = "A note for the SSH key that gets created."
 }
+
+variable num_compute {
+  description = "Number of compute nodes"
+}
+
+variable master_hostname {
+  description = "Name of master host"
+}
+
+variable master_cores {
+  description = "Number of cores for master host"
+}
+
+variable compute_cores {
+  description = "Number of cores for each compute host"
+}
+
+variable compute_prefix {
+  description = "Prefix for compute host which will be appended with number of compute, e.g., compute0, compute1 "
+}
+
+variable post_install_script_uri {
+  description = "e.g., https://ip/SpectrumSymphony.sh, https://ip/SpectrumConductor.sh"
+}
+
 
 ##############################################################################
 # Outputs
