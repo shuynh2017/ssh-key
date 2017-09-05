@@ -27,7 +27,7 @@ resource "ibm_compute_ssh_key" "ssh_key" {
 
 # Create a virtual server with the SSH key.
 resource "ibm_compute_vm_instance" "master" {
-  hostname          = "${var.mastser_hostname}"
+  hostname          = "${var.master_hostname}"
   domain            = "example.com"
   #ssh_keys          = [123456, "${ibm_compute_ssh_key.keyLabel1.id}"]
   datacenter        = "${var.datacenter}"
@@ -49,7 +49,7 @@ resource "ibm_compute_vm_instance" "computes" {
   cores             = "${var.compute_cores}"
   memory            = 1024
   count 	    = "${var.num_compute}"
-  user_metadata     = "{\"masterIP\":${ibm_compute_vm_instance.my_server_1.ipv4_address}}"
+  user_metadata     = "{\"masterIP\":${ibm_compute_vm_instance.master.ipv4_address}}"
   post_install_script_uri = "${var.post_install_script_uri}"
 }
 
