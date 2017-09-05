@@ -33,7 +33,7 @@ resource "ibm_compute_vm_instance" "master" {
   datacenter        = "${var.datacenter}"
   os_reference_code = "CENTOS_6_64"
   network_speed     = 10
-  cores             = ${var.master_cores}
+  cores             = "${var.master_cores}"
   memory            = 1024
   post_install_script_uri = "${var.post_install_script_uri}"
 }
@@ -46,9 +46,9 @@ resource "ibm_compute_vm_instance" "computes" {
   datacenter        = "${var.datacenter}"
   os_reference_code = "CENTOS_6_64"
   network_speed     = 10
-  cores             = ${var.compute_cores}
+  cores             = "${var.compute_cores}"
   memory            = 1024
-  count 	    = ${var.num_compute}
+  count 	    = "${var.num_compute}"
   user_metadata     = "{\"masterIP\":${ibm_compute_vm_instance.my_server_1.ipv4_address}}"
   post_install_script_uri = "${var.post_install_script_uri}"
 #}
