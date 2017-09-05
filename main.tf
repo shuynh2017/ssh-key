@@ -33,7 +33,7 @@ resource "ibm_compute_vm_instance" "master" {
   datacenter        = "${var.datacenter}"
   os_reference_code = "CENTOS_6_64"
   network_speed     = 10
-#  cores             = "${var.master_cores}"
+  cores             = "${var.master_cores}"
   memory            = 1024
   post_install_script_uri = "${var.post_install_script_uri}"
 }
@@ -46,9 +46,9 @@ resource "ibm_compute_vm_instance" "computes" {
   datacenter        = "${var.datacenter}"
   os_reference_code = "CENTOS_6_64"
   network_speed     = 10
-#  cores             = "${var.compute_cores}"
+  cores             = "${var.compute_cores}"
   memory            = 1024
-#  count 	    = "${var.num_compute}"
+  count 	    = "${var.num_compute}"
   user_metadata     = "{\"masterIP\":${ibm_compute_vm_instance.my_server_1.ipv4_address}}"
   post_install_script_uri = "${var.post_install_script_uri}"
 }
@@ -78,21 +78,21 @@ variable key_note {
   description = "A note for the SSH key that gets created."
 }
 
-#variable num_compute {
-#  description = "Number of compute nodes"
-#}
+variable num_compute {
+  description = "Number of compute nodes"
+}
 
-#variable master_hostname {
-#  description = "Name of master host"
-#}
+variable master_hostname {
+  description = "Name of master host"
+}
 
-#variable master_cores {
-#  description = "Number of cores for master host"
-#}
+variable master_cores {
+  description = "Number of cores for master host"
+}
 
-#variable compute_cores {
-#  description = "Number of cores for each compute host"
-#}
+variable compute_cores {
+  description = "Number of cores for each compute host"
+}
 
 #variable compute_prefix {
 #  description = "Prefix for compute host which will be appended with number of compute, e.g., compute0, compute1 "
