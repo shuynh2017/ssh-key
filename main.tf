@@ -78,21 +78,21 @@ variable key_note {
   description = "A note for the SSH key that gets created."
 }
 
-variable num_compute {
-  description = "Number of compute nodes"
-}
+#variable num_compute {
+#  description = "Number of compute nodes"
+#}
 
-variable master_hostname {
-  description = "Name of master host"
-}
+#variable master_hostname {
+#  description = "Name of master host"
+#}
 
-variable master_cores {
-  description = "Number of cores for master host"
-}
+#variable master_cores {
+#  description = "Number of cores for master host"
+#}
 
-variable compute_cores {
-  description = "Number of cores for each compute host"
-}
+#variable compute_cores {
+#  description = "Number of cores for each compute host"
+#}
 
 #variable compute_prefix {
 #  description = "Prefix for compute host which will be appended with number of compute, e.g., compute0, compute1 "
