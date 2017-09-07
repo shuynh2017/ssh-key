@@ -46,7 +46,7 @@ resource "ibm_compute_vm_instance" "computes" {
   #ssh_keys          = [123456, "${ibm_compute_ssh_key.keyLabel1.id}"]
   datacenter        = "${var.datacenter}"
   #os_reference_code = "CENTOS_6_64"
-  image_id          = 1734571
+  image_id          = 1734591
   network_speed     = 10
   cores             = "${var.compute_cores}"
   memory            = 1024
