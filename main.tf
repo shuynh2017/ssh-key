@@ -28,11 +28,11 @@ resource "ibm_compute_ssh_key" "ssh_key" {
 # Create a virtual server with the SSH key.
 resource "ibm_compute_vm_instance" "master" {
   hostname          = "${var.master_hostname}"
-  domain            = "example.com"
+  domain            = "domain.com"
   #ssh_keys          = [123456, "${ibm_compute_ssh_key.keyLabel1.id}"]
   datacenter        = "${var.datacenter}"
   #os_reference_code = "CENTOS_6_64"
-  image_id          = 1733733
+  image_id          = 1734571
   network_speed     = 10
   cores             = "${var.master_cores}"
   memory            = 1024
@@ -40,19 +40,20 @@ resource "ibm_compute_vm_instance" "master" {
 }
 
 # Create a virtual server with the SSH key.
-#resource "ibm_compute_vm_instance" "computes" {
-#  hostname          = "${var.compute_prefix}${count.index}"
-#  domain            = "example.com"
-#  #ssh_keys          = [123456, "${ibm_compute_ssh_key.keyLabel1.id}"]
-#  datacenter        = "${var.datacenter}"
-#  os_reference_code = "CENTOS_6_64"
-#  network_speed     = 10
-#  cores             = "${var.compute_cores}"
-#  memory            = 1024
-#  count 	    = "${var.num_compute}"
-#  user_metadata     = "{\"masterIP\":${ibm_compute_vm_instance.master.ipv4_address}}"
-#  post_install_script_uri = "${var.post_install_script_uri}"
-#}
+resource "ibm_compute_vm_instance" "computes" {
+  hostname          = "${var.compute_prefix}${count.index}"
+  domain            = "domain.com"
+  #ssh_keys          = [123456, "${ibm_compute_ssh_key.keyLabel1.id}"]
+  datacenter        = "${var.datacenter}"
+  #os_reference_code = "CENTOS_6_64"
+  image_id          = 1734571
+  network_speed     = 10
+  cores             = "${var.compute_cores}"
+  memory            = 1024
+  count 	    = "${var.num_compute}"
+  user_metadata     = "{\"masterIP\":${ibm_compute_vm_instance.master.ipv4_address}, \"masterHostName\": ${var.master_hostname}}"
+  post_install_script_uri = "${var.post_install_script_uri}"
+}
 
 ##############################################################################
 # Variables
