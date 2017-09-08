@@ -37,24 +37,25 @@ resource "ibm_compute_vm_instance" "master" {
   cores             = "${var.master_cores}"
   memory            = 1024
   post_install_script_uri = "${var.post_install_script_uri}"
+  user_metadata     = "{\"X\":_QUOTE_Y_QUOTE_}"
 }
 
 # Create a virtual server with the SSH key.
-resource "ibm_compute_vm_instance" "computes" {
-  hostname          = "${var.compute_prefix}${count.index}"
-  domain            = "domain.com"
-  #ssh_keys          = [123456, "${ibm_compute_ssh_key.keyLabel1.id}"]
-  datacenter        = "${var.datacenter}"
-  #os_reference_code = "CENTOS_6_64"
-  image_id          = 1734769
-  network_speed     = 10
-  cores             = "${var.compute_cores}"
-  memory            = 1024
-  count 	    = "${var.num_compute}"
-#  user_metadata     = "{\"masterIP\":${ibm_compute_vm_instance.master.ipv4_address}, \"masterHostName\": ${var.master_hostname}}"
-  user_metadata     = "{\"masterIP\":_QUOTE_${ibm_compute_vm_instance.master.ipv4_address}_QUOTE_, \"masterHostName\": _QUOTE_${var.master_hostname}_QUOTE_}"
-  post_install_script_uri = "${var.post_install_script_uri}"
-}
+#resource "ibm_compute_vm_instance" "computes" {
+#  hostname          = "${var.compute_prefix}${count.index}"
+#  domain            = "domain.com"
+#  #ssh_keys          = [123456, "${ibm_compute_ssh_key.keyLabel1.id}"]
+#  datacenter        = "${var.datacenter}"
+#  #os_reference_code = "CENTOS_6_64"
+#  image_id          = 1734769
+#  network_speed     = 10
+#  cores             = "${var.compute_cores}"
+#  memory            = 1024
+#  count 	    = "${var.num_compute}"
+##  user_metadata     = "{\"masterIP\":${ibm_compute_vm_instance.master.ipv4_address}, \"masterHostName\": ${var.master_hostname}}"
+#  user_metadata     = "{\"masterIP\":_QUOTE_${ibm_compute_vm_instance.master.ipv4_address}_QUOTE_, \"masterHostName\": _QUOTE_${var.master_hostname}_QUOTE_}"
+#  post_install_script_uri = "${var.post_install_script_uri}"
+#}
 
 ##############################################################################
 # Variables
