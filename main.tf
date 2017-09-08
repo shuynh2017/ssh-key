@@ -35,7 +35,7 @@ resource "ibm_compute_vm_instance" "master" {
   image_id          = 1735645
   network_speed     = 10
   cores             = "${var.master_cores}"
-  memory            = 1024
+  memory            = 8192
   post_install_script_uri = "${var.post_install_script_uri}"
   user_metadata     = "{\"X\":_QUOTE_Y_QUOTE_}"
 }
@@ -50,7 +50,7 @@ resource "ibm_compute_vm_instance" "master" {
 #  image_id          = 1735645
 #  network_speed     = 10
 #  cores             = "${var.compute_cores}"
-#  memory            = 1024
+#  memory            = 8192
 #  count 	    = "${var.num_compute}"
 ##  user_metadata     = "{\"masterIP\":${ibm_compute_vm_instance.master.ipv4_address}, \"masterHostName\": ${var.master_hostname}}"
 #  user_metadata     = "{\"masterIP\":_QUOTE_${ibm_compute_vm_instance.master.ipv4_address}_QUOTE_, \"masterHostName\": _QUOTE_${var.master_hostname}_QUOTE_}"
