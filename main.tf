@@ -37,7 +37,7 @@ resource "ibm_compute_vm_instance" "master" {
   cores             = "${var.master_cores}"
   memory            = 8192
   post_install_script_uri = "${var.post_install_script_uri}"
-  user_metadata     = "{\"X\":_QUOTE_Y_QUOTE_}"
+#  user_metadata     = "{\"X\":_QUOTE_Y_QUOTE_}"
 }
 
 # Create a virtual server with the SSH key.
