@@ -32,7 +32,7 @@ resource "ibm_compute_vm_instance" "master" {
   #ssh_keys          = [123456, "${ibm_compute_ssh_key.keyLabel1.id}"]
   datacenter        = "${var.datacenter}"
   #os_reference_code = "CENTOS_6_64"
-  image_id          = 1734769
+  image_id          = 1735645
   network_speed     = 10
   cores             = "${var.master_cores}"
   memory            = 1024
@@ -47,7 +47,7 @@ resource "ibm_compute_vm_instance" "master" {
 #  #ssh_keys          = [123456, "${ibm_compute_ssh_key.keyLabel1.id}"]
 #  datacenter        = "${var.datacenter}"
 #  #os_reference_code = "CENTOS_6_64"
-#  image_id          = 1734769
+#  image_id          = 1735645
 #  network_speed     = 10
 #  cores             = "${var.compute_cores}"
 #  memory            = 1024
