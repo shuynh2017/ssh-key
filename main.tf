@@ -29,10 +29,9 @@ resource "ibm_compute_ssh_key" "ssh_key" {
 resource "ibm_compute_vm_instance" "master" {
   hostname          = "${var.master_hostname}"
   domain            = "domain.com"
-  #ssh_keys          = [123456, "${ibm_compute_ssh_key.keyLabel1.id}"]
   datacenter        = "${var.datacenter}"
   #os_reference_code = "CENTOS_6_64"
-  image_id          = 1735853
+  image_id          = "${var.image_id}"
   network_speed     = 100
   cores             = "${var.master_cores}"
   memory            = 8192
@@ -44,10 +43,9 @@ resource "ibm_compute_vm_instance" "master" {
 resource "ibm_compute_vm_instance" "computes" {
   hostname          = "${var.compute_prefix}${count.index}"
   domain            = "domain.com"
-  #ssh_keys          = [123456, "${ibm_compute_ssh_key.keyLabel1.id}"]
   datacenter        = "${var.datacenter}"
   #os_reference_code = "CENTOS_6_64"
-  image_id          = 1735853
+  image_id          = "${var.image_id}"
   network_speed     = 100
   cores             = "${var.compute_cores}"
   memory            = 8192
@@ -104,6 +102,10 @@ variable compute_prefix {
 
 variable post_install_script_uri {
   description = "e.g., https://ip/SpectrumSymphony.sh, https://ip/SpectrumConductor.sh"
+}
+
+variable image_id {
+  description = "Id of image template"
 }
 
 
